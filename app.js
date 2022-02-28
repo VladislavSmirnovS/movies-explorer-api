@@ -9,7 +9,8 @@ const routes = require('./routes');
 const errorHandler = require('./middleware/error-handler');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const corsOption = require('./middleware/cors');
-const { PORT, DB_ADDRESS } = require('./config');
+
+const { PORT } = process.env;
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(cookieParser());
 app.use(requestLogger);
 app.use(corsOption);
 
-mongoose.connect(DB_ADDRESS, {
+mongoose.connect('mongodb://localhost:27017/moviesDB', {
   useNewUrlParser: true,
 });
 
