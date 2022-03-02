@@ -6,7 +6,7 @@ const BadRequestError = require('../errors/bad-request');
 const NotFoundError = require('../errors/not-found');
 const ConflictError = require('../errors/conflict');
 
-const { JWT_SECRET, NODE_ENV } = process.env;
+const { JWT_SECRET, NODE_ENV = 'production' } = process.env;
 
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
