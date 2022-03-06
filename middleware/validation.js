@@ -32,7 +32,7 @@ const userUpdateValidator = celebrate({
 
 const idValidator = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required(),
+    _id: Joi.string().required().hex().length(24),
   }),
 });
 
@@ -46,7 +46,7 @@ const movieValidator = celebrate({
     image: Joi.string().required().custom(urlValidator),
     trailerLink: Joi.string().required().custom(urlValidator),
     thumbnail: Joi.string().required().custom(urlValidator),
-    movieId: Joi.string().required(),
+    movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }),

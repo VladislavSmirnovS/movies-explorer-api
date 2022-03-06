@@ -6,7 +6,7 @@ const BadRequestError = require('../errors/bad-request');
 const NotFoundError = require('../errors/not-found');
 const ConflictError = require('../errors/conflict');
 
-const { JWT_SECRET, NODE_ENV = 'production' } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
@@ -60,6 +60,16 @@ module.exports.login = (req, res, next) => {
         .send({ data: user.toJSON() });
     })
     .catch(next);
+};
+
+module.exports.signout = (req, res) => {
+  res
+    .status(200)
+    .clearCookie('jwt', {
+      secure: NODE_ENV === 'production',
+      // sameSite: 'none',
+    })
+    .send({ message: 'Вы вышли из аккаунта' });
 };
 
 module.exports.getMyInfo = (req, res, next) => {

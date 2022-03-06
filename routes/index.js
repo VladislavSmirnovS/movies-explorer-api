@@ -4,14 +4,14 @@ const {
   signinValidator,
 } = require('../middleware/validation');
 const auth = require('../middleware/auth');
-const { createUser, login } = require('../controllers/users');
+const { createUser, login, signout } = require('../controllers/users');
 const movieRouter = require('./movies');
 const userRouter = require('./users');
 const NotFoundError = require('../errors/not-found');
 
 router.post('/signup', signupValidator, createUser);
-
 router.post('/signin', signinValidator, login);
+router.get('/signout', signout);
 
 router.use(auth);
 

@@ -31,15 +31,15 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  const { movieId } = req.params;
+  const { _id } = req.params;
 
-  Movie.findById(movieId)
+  Movie.findById(_id)
     .orFail(new NotFoundError('Фильм с указанным id не найден'))
     .then((movie) => {
       if (String(movie.owner) !== String(req.user._id)) {
         throw new NoRightsError('Недостаточно прав для удаления чужого фильма');
       }
-      return Movie.findByIdAndDelete(movieId).then((deletedMovie) => {
+      return Movie.findByIdAndDelete(_id).then((deletedMovie) => {
         res.status(200).send(deletedMovie);
       }).catch(next);
     })
