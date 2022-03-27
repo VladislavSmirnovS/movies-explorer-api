@@ -32,7 +32,7 @@ module.exports.createMovie = (req, res, next) => {
 
 module.exports.deleteMovie = (req, res, next) => {
   const { _id } = req.params;
-
+  console.log(_id);
   Movie.findById(_id)
     .orFail(new NotFoundError('Фильм с указанным id не найден'))
     .then((movie) => {
