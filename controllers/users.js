@@ -10,7 +10,7 @@ const { JWT_SECRET, NODE_ENV } = process.env;
 
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
-
+  console.log(req.body);
   bcrypt
     .hash(password, 10)
     .then((hash) => User.create({
@@ -54,8 +54,8 @@ module.exports.login = (req, res, next) => {
         .cookie('token', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-          // sameSite: 'none',
-          // secure: true,
+          sameSite: 'none',
+          secure: true,
         })
         .send({ data: user.toJSON() });
     })
@@ -65,9 +65,9 @@ module.exports.login = (req, res, next) => {
 module.exports.signout = (req, res) => {
   res
     .status(200)
-    .clearCookie('jwt', {
+    .clearCookie('token', {
       secure: NODE_ENV === 'production',
-      // sameSite: 'none',
+      sameSite: 'none',
     })
     .send({ message: 'Вы вышли из аккаунта' });
 };

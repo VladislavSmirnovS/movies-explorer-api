@@ -10,7 +10,7 @@ const errorHandler = require('./middleware/error-handler');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const corsOption = require('./middleware/cors');
 
-const { PORT = 3000, DB_PATH = 'mongodb://localhost:27017/moviesdb' } = process.env;
+const { PORT = 3001, DB_PATH = 'mongodb://localhost:27017/moviesdb' } = process.env;
 
 const app = express();
 
