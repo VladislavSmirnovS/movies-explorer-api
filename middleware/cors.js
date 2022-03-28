@@ -1,4 +1,4 @@
-const allowedCors = ['http://localhost:3000', 'https://movies.vladislav.nomoredomains.work/signup', 'https://movies.vladislav.nomoredomains.work/signup'];
+const allowedCors = ['http://localhost:3000', 'https://movies.vladislav.nomoredomains.work', 'https://movies.vladislav.nomoredomains.work'];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,POST,PUT,PATCH,DELETE';
 
